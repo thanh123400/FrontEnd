@@ -3,6 +3,8 @@ import Menuleft from "./Menu_left";
 import Search from "./search";
 import Donate from "./Donate";
 import App2 from "./App2";
+import SignUp from "./SignUp";
+import Login from "./Login";
 import React, { useState , useEffect, useRef } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Logo from "./Image/LogoLT.png";
@@ -64,6 +66,7 @@ function HomePage() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuRef]);
+  
 
   return (
     <div class="All">
@@ -129,7 +132,7 @@ function HomePage() {
             <p>Log In</p>
           </Link>
           <Routes>
-            <Route path="/login-menu" element={<App2 />} />
+            <Route path="/login-menu" element={<Login />} />
           </Routes>
         
 
@@ -141,7 +144,7 @@ function HomePage() {
             <p>Sign Up</p>
           </Link>
           <Routes>
-            <Route path="/signup-menu" element={<App2 />} />
+            <Route path="/signup-menu" element={<SignUp />} />
           </Routes>
         
 
@@ -172,6 +175,7 @@ function HomePage() {
         </div>
       </div>
     </div>
+    
   );
 }
 

@@ -55,6 +55,7 @@ All {
     grid-gap: 10px;
     grid-template-rows: 80px;
     background-color: #e1dcc5;
+    padding-bottom: 10px;
   }
   .header-setup-component #icon {
     grid-column: 4/7;
@@ -191,3 +192,4 @@ All {
   .menu-container{
     opacity: 1 !important;
   } */
+
