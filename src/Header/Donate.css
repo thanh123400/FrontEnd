@@ -1,0 +1,20 @@
+.form_donate .baka {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: azure;
+  }
+.form_donate .heart {
+    padding-left: 3px;
+    width: 15px;
+    color: red;
+  }
+.form_donate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    border: 1px solid #999;
+    border-radius: 7px;
+    width: 100/10vw;
+    height: 25px;
+}
