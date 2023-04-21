@@ -9,7 +9,6 @@
   /* display: flex;
   justify-content: center;
   align-items: flex-start; */
-  height: 500px;
   display: grid;
   /* Chia thành 20 ô hàng ngang mỗi ô độ dài 77px !không liên quan đến heigh */
   grid-template-rows: repeat(20, 77px);
@@ -18,7 +17,7 @@
   overflow-y: auto;
 }
 .setting .content {
-  height: 1450px;
+  height: 25rem;
   width: 80vw;
   background-color: white;
   border-radius: 5px;
@@ -88,9 +87,13 @@
 .content .img-customize {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   align-items: center !important;
   text-align: center;
+  position: relative;
+  margin-top: 5px;
+  height: 250px;
+  margin-bottom: 10px;
 }
 .content h3 {
   margin-top: 25px;
@@ -100,10 +103,9 @@
   border: 1px solid red;
 }
 .setting .content button.button_text {
-  margin-top: 25px;
   display: block;
   width: 70%;
-  height: 100%;
+  height: 12%;
   background-color: #0376b8;
   font-size: 15px;
   color:aliceblue;
@@ -111,6 +113,8 @@
   padding: 4px 4px;
   border-radius: 5px;
   font-family: "Lucida Grande", Verdana, Geneva, Helvetica, Arial, sans-serif;
+  position: absolute;
+  bottom: 0;
 }
 .setting .content button.button_text:hover {
 

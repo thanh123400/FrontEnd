@@ -4,6 +4,7 @@ import "./App2.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { host, fetchDataGET } from "../helper";
 import Book from "./Image/images.jpg";
 import { Navigate, useNavigate } from "react-router-dom";
 function GoToBook({ idBook }) {
@@ -27,13 +28,10 @@ function App2() {
     // nextArrow: <button className="slick-next" />,
   };
   const [Library, setLibrary] = useState([]);
-
   useEffect(() => {
-    fetch("./ditme.json")
-      .then((response) => response.json())
-      .then((data) => setLibrary(data))
-      .catch((error) => console.log(error));
-      console.log("31321093");
+    fetchDataGET(host + `/suggest.json`).then((res) => {
+      setLibrary(res);
+    });
   }, []);
   return (
     <div className="setting">
@@ -57,15 +55,12 @@ function App2() {
                   <div>
                     <Link to={`/bookInfor/${slide.pk}`}>
                       <img
-                        src={slide.fields.image.replace(
-                          "/view?usp=share_link",
-                          "/uc?export=view"
-                        )}
+                        src={slide.fields.image? host + `/${slide.fields.image}` : null}
                       />
                     </Link>
                   </div>
-                  {/* <p> {slide.fields.title}</p> */}
-                  <button className="button_text">Borrow</button>
+                  <p> {slide.fields.title ? slide.fields.title.slice(0,30) + `...` : null} </p>
+                  <button className="button_text" href={`/bookInfor/${slide.pk}`}>Detail</button>
                 </div>
               )
               // )

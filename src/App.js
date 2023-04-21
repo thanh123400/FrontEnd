@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     fetchDataGET(host + `/suggest.json`).then((res) => {
       setLibrary(res);
-      console.log(res);
     });
   }, []);
   return (
@@ -26,7 +25,7 @@ function App() {
           />
         ))}
 
-        
+
         {Library.map((slide, index) => (
           <Route
             key={index}

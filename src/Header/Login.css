@@ -14,7 +14,8 @@
 
 .settings .white-box{
     padding-left: 20px;
-    height: 27vw;
+    padding-bottom: 20px;
+    height: max-content;
     width: 70vw;
     background-color: white;
     border-radius: 5px;
@@ -23,11 +24,10 @@
 }
 
 .DESCRIPTION {
-    margin-top: 400px;
+    top: 30rem;
     align-self: auto;
     justify-self: unset;
     position: absolute;
-    left: 220px;
 }
 
 .redline{

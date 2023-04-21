@@ -1,15 +1,72 @@
 import React, { useState } from "react";
 import "./SignUp.css";
 import HeaderAll from "../Format/HeaderAll";
+import { useNavigate } from 'react-router-dom';
+import { checkAuth, fetchDataPOST, host, setCookie } from '../helper';
+
 function SignUp() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState({
+    username: '',
+    password: '',
+    message: '',
+    useremail: '',
+    repass: '',
+  });
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setText(event.target.value);
+    const { name, value } = event.target
+    setText((prevProps) => ({
+      ...prevProps,
+      [name]: value
+    }));
   };
 
-  const handleClick = () => {
-    // console.log("Button clicked!");
+  checkAuth().then((res) => {
+    if (res) {
+      navigate('/');
+    }
+  });
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    // console.log('Button clicked!');
+    console.log(text)
+    if (text.password != text.repass) {
+      setText((prevProps) => ({
+        ...prevProps,
+        status: "Password does not match",
+        password: '',
+        repass: ''
+      }));
+      return;
+    }
+
+    fetchDataPOST(host + `/login/register/`, {
+      username: text.username,
+      password: text.password,
+      useremail: text.useremail
+    }).then((res) => {
+      console.log(res);
+      if (res && res.message == "Registered") {
+        console.log(res);
+        setCookie("sessionId", res.sessionId)
+        setCookie("username", text.username)
+        navigate('/');
+      } else {
+        console.log(res.message);
+        setText((prevProps) => ({
+          ...prevProps,
+          status: res.message,
+          password: '',
+          repass: ''
+        }));
+      }
+    }).catch((err) => {
+      console.log(err);
+    }
+    );
   };
 
   return (
@@ -19,17 +76,30 @@ function SignUp() {
           <h2>Sign Up</h2>
           <p class="instruct">
             Complete the form below to create a new Liber Online account.
-            <span class="redline">Each field is required</span>
+            <p class="redline">Each field is required</p>
           </p>
+          <p style={{ color: 'red' }}>{text.status ? text.status : null}</p>
           <div className="Input">
             <label htmlFor="text-input" style={{ fontWeight: "bold" }}>
-              Your email address
+              Your username
             </label>
             <br />
             <input
               type="text"
               id="text-input"
-              value={text}
+              value={text.username}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="Input">
+            <label htmlFor="text-input" style={{ fontWeight: "bold" }}>
+              Your email
+            </label>
+            <br />
+            <input
+              type="email"
+              id="text-input"
+              value={text.useremail}
               onChange={handleChange}
             />
           </div>
@@ -39,9 +109,9 @@ function SignUp() {
             </label>
             <br />
             <input
-              type="text"
+              type="password"
               id="text-input"
-              value={text}
+              value={text.password}
               onChange={handleChange}
             />
           </div>
@@ -53,7 +123,7 @@ function SignUp() {
             <input
               type="text"
               id="text-input"
-              value={text}
+              value={text.password}
               onChange={handleChange}
             />
           </div>

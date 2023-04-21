@@ -1,8 +1,8 @@
 // TODO: MUST HAVE, ADD THIS TO YOUR JS DIR
-export const host = `http://35.212.202.252:8000`
+export const host = `http://127.0.0.1:8000`
 export function checkAuth() {
     if (getCookie("sessionId") != "" && getCookie("username") != "") {
-        let url = host + `login/auth/`;
+        let url = host + `/login/auth/`;
         let data = {
             sessionId: getCookie("sessionId"),
             username: getCookie("username")

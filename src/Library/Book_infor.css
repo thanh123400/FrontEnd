@@ -9,7 +9,7 @@
     /* display: flex;
     justify-content: center;
     align-items: flex-start; */
-    height: 500px;
+    height: 100%;
     display: grid;
     /* Chia thành 20 ô hàng ngang mỗi ô độ dài 77px !không liên quan đến heigh */
     grid-template-rows: repeat(20, 77px);
